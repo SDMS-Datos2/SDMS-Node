@@ -5,8 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Constantes.h</itemPath>
+      <itemPath>MemHandler.h</itemPath>
       <itemPath>Server.h</itemPath>
-      <itemPath>Thread_listen.h</itemPath>
+      <itemPath>dataBase.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,8 +17,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Constantes.cpp</itemPath>
+      <itemPath>MemHandler.cpp</itemPath>
       <itemPath>Server.cpp</itemPath>
-      <itemPath>Thread_listen.cpp</itemPath>
+      <itemPath>dataBase.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -46,13 +48,17 @@
       </item>
       <item path="Constantes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MemHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MemHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Thread_listen.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dataBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Thread_listen.h" ex="false" tool="3" flavor2="0">
+      <item path="dataBase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -81,13 +87,17 @@
       </item>
       <item path="Constantes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MemHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MemHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Server.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Thread_listen.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dataBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Thread_listen.h" ex="false" tool="3" flavor2="0">
+      <item path="dataBase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

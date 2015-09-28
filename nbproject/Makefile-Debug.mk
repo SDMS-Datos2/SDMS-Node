@@ -36,8 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Constantes.o \
+	${OBJECTDIR}/MemHandler.o \
 	${OBJECTDIR}/Server.o \
-	${OBJECTDIR}/Thread_listen.o \
+	${OBJECTDIR}/dataBase.o \
 	${OBJECTDIR}/main.o
 
 
@@ -70,15 +71,20 @@ ${OBJECTDIR}/Constantes.o: Constantes.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Constantes.o Constantes.cpp
 
+${OBJECTDIR}/MemHandler.o: MemHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MemHandler.o MemHandler.cpp
+
 ${OBJECTDIR}/Server.o: Server.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
 
-${OBJECTDIR}/Thread_listen.o: Thread_listen.cpp 
+${OBJECTDIR}/dataBase.o: dataBase.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Thread_listen.o Thread_listen.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dataBase.o dataBase.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

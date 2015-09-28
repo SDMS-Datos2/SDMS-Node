@@ -44,6 +44,14 @@ public:
      */
     static const int DosCientaSeis=256;
     /**
+     * QuinDoce=512
+     */
+    static const int QuinDoce=512;
+    /**
+     * puerto=6200
+     */
+    static const int puerto=6200;
+    /**
      * "ERROR opening socket"
      */
     static const char* error1;
@@ -89,6 +97,7 @@ public:
      * que contiene.
      */
     int contador(long dato);
+    
 };
 
 #endif	/* CONSTANTES_H */

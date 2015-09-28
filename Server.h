@@ -13,23 +13,23 @@
 #include <netinet/in.h>
 #include <cstdlib>
 #include <arpa/inet.h>
-#include "Thread_listen.h"
+#include "MemHandler.h"
 #include "Constantes.h"
 
 class Server :public Constantes{
 public:
-    Server(int port);
+    Server(char* ServerName);
     virtual ~Server();
 private:
-    int _sockfd, _newsockfd, _portno, _n, _pid;
+    int _sockfd, _newsockfd, _portno, _n, _codigos;
     socklen_t _clilen;
     char _buffer[DosCientaSeis];
+    char* _id;
+    MemHandler *_hilo;
     struct sockaddr_in _serv_addr, _cli_addr;
-    int _lenght;
-    Thread_listen* _hilos;
     void interact(int newsockfd);
     void error(const char* msg);
-    void growarray(int pActualLenght, Thread_listen* pHilos);
+    int decodeMsg(int dato);
 };
 
 #endif	/* SERVER_H */

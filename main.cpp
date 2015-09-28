@@ -41,9 +41,6 @@ int main(int argc, char** argv) {
     int num=i/pow10(2);
     //int num= contador(i);
     cout<<num<<endl;*/
-    char *dato="";
-    dato+='e';
-    dato+='r';
-    cout<<dato<<endl;
+    
     return 0;
 }

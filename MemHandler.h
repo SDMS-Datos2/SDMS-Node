@@ -15,18 +15,24 @@
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include "dataBase.h"
 #include "Constantes.h"
 
-class Thread_listen :public Constantes{
+class MemHandler :public Constantes{
 public:
-    Thread_listen(int sockfd);
-    virtual ~Thread_listen();
-    void enviarMsg(const char* msg);
+    MemHandler(int sockfd);
+    virtual ~MemHandler();
+    void interactuar();
 private:
-    int _newsockfd;
+    int _sockfd,_codigos;
     char _buffer[DosCientaSeis];
     int _n;
-    void interactuar();
+    dataBase *_heap;
+    int decodeMsg(int dato);
+    int _calloc();
+    void* _get();
+    void _set();
+    int _free();
     void error(const char* msg);
 };
 
