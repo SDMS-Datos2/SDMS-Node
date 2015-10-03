@@ -18,6 +18,10 @@
 #include "dataBase.h"
 #include "Constantes.h"
 
+/**
+ * clase que va a controla la memoria en terminos de recibir y devolver 
+ * los datos que se le pidan o las operaciones que se le pidan realizar.
+ */
 class MemHandler :public Constantes{
 public:
     MemHandler(int sockfd);

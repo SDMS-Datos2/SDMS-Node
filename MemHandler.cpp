@@ -52,6 +52,15 @@ void MemHandler::interactuar() {
     close(_sockfd);
 }
 
+/**
+ * metodo que se utiliza para saber si lo que se pide un d_calloc,
+ * d_get, d_set o un d_free.
+ * @param dato recibe un dato entero que nos indica cual es la 
+ * operacion pedida.
+ * @return retorna un entero que nos indica si la operacion se pudo realizar,
+ * un 0 indica que todo esta bien, 1 insuficiencia de memoria y un 2 que 
+ * se esta accediendo a un lugar de memoria indevido.
+ */
 int MemHandler::decodeMsg(int dato) {
     if(dato==uno){
         _calloc();
@@ -75,9 +84,13 @@ void MemHandler::error(const char* msg) {
     exit(uno);
 }
 
+/**
+ * metodo que se conecta con la dataBase e intenta crear ocupar un 
+ * nuevo espacio de memoria.
+ * @return 
+ */
 int MemHandler::_calloc() {
-    int n;
-    int pSize=0;
+    int n,pSize=0;
     n = read(_sockfd,&pSize,sizeof(int));
     if (n < cero) 
         error(error5);
@@ -85,29 +98,45 @@ int MemHandler::_calloc() {
     return _codigos;
 }
 
+/**
+ * metodo que obtiene datos segun la posicion de que le proporcione.
+ * @return 
+ */
 void* MemHandler::_get() {
-    int space,size,n;
+    int space=0,size=0,n;
     n = read(_sockfd,&space,sizeof(int));
     n = read(_sockfd,&size,sizeof(int));
     if (n < cero) 
         error(error5);
-    void* pointer=(_heap->getPointer()+space);
+    void* pointer=_heap->d_get(space);
     n=send(_sockfd, pointer,size,cero);
     if (n < cero) 
         error(error6);
     return pointer;
 }
 
+/**
+ * metodo que agarra una porcion de memoria y empieza a escribir sobre 
+ * ella.
+ */
 void MemHandler::_set() {
-    int size,n;
+    int size=0,n=0;
     n = read(_sockfd,&size,sizeof(int));
     if (n < cero) 
         error(error5);
     n = read(_sockfd,_heap->getPointer(),size);
     if (n < cero) 
         error(error5);
+    _heap->sumPointer();
 }
 
+/**
+ * metodo que libera la memoria que ya no se ocupe mas.retorna un cero si todo
+ * se encuentra bien y un 2 si se esta tratando de acceder a memoria que no le 
+ * pertenece.
+ * @return retorna un dato tipo enter, un cero si todo esta bien y un 2 si 
+ * se intentando entrar a memoria que no le pertenece.
+ */
 int MemHandler::_free() {
 
 }

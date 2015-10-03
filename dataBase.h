@@ -7,20 +7,29 @@
 
 #ifndef DATABASE_H
 #define	DATABASE_H
+#include <stdlib.h>
+#include <stdint.h>
+#include <ios>
 #include "Constantes.h"
 
+/**
+ * clase que es que la que va a controlar las operaciones en memoria y 
+ * demas operaciones.
+ */
 class dataBase :public Constantes{
 public:
     dataBase(int pSize);
     int d_calloc(int pSize);
     int d_set(void* mensaje,int pSize);
+    void* d_get(int mensaje);
     int d_free(int mensaje,int pSize);
-    int d_status(int mensaje);
     void * getPointer();
+    void sumPointer();
     virtual ~dataBase();
 private:
     void * _pointer, *_first;
     int _leftMem;
+    int d_status(int mensaje);
 };
 
 #endif	/* DATABASE_H */
