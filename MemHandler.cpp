@@ -66,7 +66,7 @@ int MemHandler::decodeMsg(int dato) {
     if(dato==uno){
         answ=_calloc();
     }else if(dato==dos){
-        answ=_get();
+        answ=(int)_get();
     }else if(dato==tres){
         _set();
     }
@@ -112,7 +112,10 @@ int MemHandler::_get() {
     n=send(_sockfd, pointer,size,cero);
     if (n < cero) 
         error(error6);
-    return pointer;
+    if(sizeof(pointer)==sizeof(int))
+        return (intptr_t)pointer;
+    else
+        return dos;
 }
 
 /**
@@ -139,6 +142,12 @@ void MemHandler::_set() {
  * se intentando entrar a memoria que no le pertenece.
  */
 int MemHandler::_free() {
-
+    int space=0,size=0,n;
+    n = read(_sockfd,&space,sizeof(int));
+    n = read(_sockfd,&size,sizeof(int));
+    if (n < cero) 
+        error(error5);
+    _codigos=_heap->d_free(space,size);
+    return _codigos;
 }
 

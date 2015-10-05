@@ -34,7 +34,7 @@ private:
     dataBase *_heap;
     int decodeMsg(int dato);
     int _calloc();
-    void* _get();
+    int _get();
     void _set();
     int _free();
     void error(const char* msg);

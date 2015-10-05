@@ -58,7 +58,7 @@ void* dataBase::d_get(int mensaje, int pSize) {
     if(head<=mensaje<=tail&&size){
         return _first+mensaje;
     }
-    return d_status(dos);
+    //return d_status(dos);
     
 }
 
