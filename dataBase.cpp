@@ -17,6 +17,7 @@ dataBase::dataBase(int pSize) {
     _leftMem=pSize;
     _pointer= calloc(uno,_leftMem);
     _first=_pointer;
+    _list= new lista();
 }
 
 /**
@@ -35,9 +36,38 @@ dataBase::~dataBase() {
  * insuficiencia de memoria.
  */
 int dataBase::d_calloc(int pSize) {
-    if(pSize<=_leftMem)
+    if(pSize<=_leftMem){
+        _list->insert(pSize);
         return d_status(cero);
+    }
     return d_status(uno);
+}
+
+/**
+ * metodo que retorna el puntero del espacio de memoria pedido para enviarlo
+ * por medio del socket.
+ * @param mensaje dato tipo entero, es el lugar en donde se ubica el mensaje
+ * que queremos enviar.
+ * @return retorna un void*, este el puntero de donde se encuentra el primer
+ * dato que queremos.
+ */
+void* dataBase::d_get(int mensaje, int pSize) {
+    int head=(intptr_t)_first;
+    int tail=(intptr_t)(_pointer+_leftMem);
+    bool size=((_list->find(mensaje))->getSize()==pSize);
+    if(head<=mensaje<=tail&&size){
+        return _first+mensaje;
+    }
+    return d_status(dos);
+    
+}
+
+/**
+ * metodo que establece el tamaño del dato.
+ * @param pSize dato tipo entero,es el tamaño del dato.
+ */
+void dataBase::d_set(int pSize) {
+    (_list->getTail())->setSize(pSize);
 }
 
 /**
@@ -53,24 +83,6 @@ int dataBase::d_status(int mensaje) {
     else if(mensaje==uno)
         return uno;
     return dos;
-}
-
-/**
- * metodo que retorna el puntero del espacio de memoria pedido para enviarlo
- * por medio del socket.
- * @param mensaje dato tipo entero, es el lugar en donde se ubica el mensaje
- * que queremos enviar.
- * @return retorna un void*, este el puntero de donde se encuentra el primer
- * dato que queremos.
- */
-void* dataBase::d_get(int mensaje) {
-    int head=(intptr_t)_first;
-    int tail=(intptr_t)(_pointer+_leftMem);
-    if(head<=mensaje<=tail){
-        return _first+mensaje;
-    }
-    //return d_status(dos);
-    
 }
 
 /**
@@ -93,10 +105,14 @@ void* dataBase::getPointer() {
  * accediendo a memoria que no le pertenece.
  */
 int dataBase::d_free(int mensaje, int pSize) {
-    /**if(abs(_pointer-_leftMem)<=mensaje<=(_pointer+_leftMem)){
-        //do_something;
-        //return d_satus(cero);
-    }*/
+    int head=(intptr_t)_first;
+    int tail=(intptr_t)(_pointer+_leftMem);
+    bool size=((_list->find(mensaje))->getSize()==pSize);
+    if(head<=mensaje<=tail&&size){
+        _list->find(mensaje)->setSize(cero);
+        _leftMem-=pSize;
+        return d_status(uno);
+    }
     return d_status(dos);
 }
 

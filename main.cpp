@@ -8,12 +8,22 @@
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
+#include <math.h>
 #include "Server.h"
+#include "Constantes.h"
 using namespace std;
 
 /*
  * 
- */
+ *
+int contador(long dato) {
+    int i=0;
+    for(i;dato>0;i++){
+        dato/=10;
+    }
+    return i;
+}*/
+
 int main(int argc, char** argv) {
     //Server * nuevo = new Server(5001);
     /**char numeros=48;
@@ -31,10 +41,15 @@ int main(int argc, char** argv) {
     int * direccion= (int*)malloc(2*sizeof(int));
     int largo=contador(dato);
     int i=0;
-    if(largo>10)
-        (*direccion)=(dato/pow10(largo-10));
-    dato%=(int)pow10(largo-10);
-    *(++direccion)=(int)dato;
+    if(largo<10){
+        *direccion=(int)dato;
+    }
+    else{
+        largo;
+        (*direccion)=(dato/pow10(largo-9));
+        dato%=(int)pow10(largo-9);
+        *(++direccion)=(int)dato;
+    }
     cout<<*direccion<<endl;
     cout<<*(--direccion)<<endl;
     /**long i=123456789123;

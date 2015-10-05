@@ -39,6 +39,10 @@ public:
      * cinco=5
      */
     static const int cinco=5;
+     /**
+     * nueve
+     */
+    static const int nueve=9;
     /**
      * DosCincoSeis=256
      */
@@ -97,7 +101,6 @@ public:
      * que contiene.
      */
     int contador(long dato);
-    
 };
 
 #endif	/* CONSTANTES_H */

@@ -39,7 +39,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/MemHandler.o \
 	${OBJECTDIR}/Server.o \
 	${OBJECTDIR}/dataBase.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/lista.o \
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/nodo.o
 
 
 # C Compiler Flags
@@ -86,10 +88,20 @@ ${OBJECTDIR}/dataBase.o: dataBase.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dataBase.o dataBase.cpp
 
+${OBJECTDIR}/lista.o: lista.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lista.o lista.cpp
+
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/nodo.o: nodo.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/nodo.o nodo.cpp
 
 # Subprojects
 .build-subprojects:

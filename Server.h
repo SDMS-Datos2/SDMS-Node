@@ -27,7 +27,6 @@ private:
     char* _id;
     MemHandler *_hilo;
     struct sockaddr_in _serv_addr, _cli_addr;
-    void interact(int newsockfd);
     void error(const char* msg);
     int decodeMsg(int dato);
 };

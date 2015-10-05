@@ -62,36 +62,6 @@ Server::~Server() {
 }
 
 /**
- * metodo que funciona con los hilos, este tiene
- * las operaciones a realizarse para comunicarse 
- * con el cliente.
- * @param newsockfd dato del tipo entero, este dato 
- * solo lo puede ingresar y operar el servidor.
- */
-void Server::interact(int newsockfd) {
-    int n;
-    char Buffer[DosCientaSeis];
-    //bucle que interactua con el cliente.
-    n=send(newsockfd, &_id, getLenght(_id), cero);
-    if (n < cero) 
-            error(error6);
-    while(true){
-        bzero(Buffer,DosCientaSeis);
-        //linea para leer mensajes.
-        n = read(newsockfd,Buffer,DosCientaSeis-uno);
-        if (n < cero) 
-            error(error5);
-        //decodeMsg(atoi(Buffer),Buffer);
-        if(_debug)
-            printf("Here is the message: %s",Buffer);
-        //linea para enviar datos.
-        n=send(newsockfd, &_codigos,sizeof(int), cero);
-        if (n < cero) 
-            error(error6);
-    }
-}
-
-/**
  * metodo para imprimir el pantalla los errores 
  * que se presenten durante la ejecucion del servidor.
  * @param msg dato tipo "const char*" este es un string 

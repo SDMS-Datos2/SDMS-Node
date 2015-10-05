@@ -62,15 +62,15 @@ void MemHandler::interactuar() {
  * se esta accediendo a un lugar de memoria indevido.
  */
 int MemHandler::decodeMsg(int dato) {
+    int answ=0;
     if(dato==uno){
-        _calloc();
+        answ=_calloc();
     }else if(dato==dos){
-        _get();
+        answ=_get();
     }else if(dato==tres){
         _set();
-    }else{
-        _free();
     }
+    answ=_free();
 }
 
 /**
@@ -102,13 +102,13 @@ int MemHandler::_calloc() {
  * metodo que obtiene datos segun la posicion de que le proporcione.
  * @return 
  */
-void* MemHandler::_get() {
+int MemHandler::_get() {
     int space=0,size=0,n;
     n = read(_sockfd,&space,sizeof(int));
     n = read(_sockfd,&size,sizeof(int));
     if (n < cero) 
         error(error5);
-    void* pointer=_heap->d_get(space);
+    void* pointer=_heap->d_get(space,size);
     n=send(_sockfd, pointer,size,cero);
     if (n < cero) 
         error(error6);
@@ -122,6 +122,7 @@ void* MemHandler::_get() {
 void MemHandler::_set() {
     int size=0,n=0;
     n = read(_sockfd,&size,sizeof(int));
+    _heap->d_set(size);
     if (n < cero) 
         error(error5);
     n = read(_sockfd,_heap->getPointer(),size);

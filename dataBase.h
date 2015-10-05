@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <ios>
 #include "Constantes.h"
+#include "lista.h"
 
 /**
  * clase que es que la que va a controlar las operaciones en memoria y 
@@ -20,14 +21,15 @@ class dataBase :public Constantes{
 public:
     dataBase(int pSize);
     int d_calloc(int pSize);
-    int d_set(void* mensaje,int pSize);
-    void* d_get(int mensaje);
+    void d_set(int pSize);
+    void* d_get(int mensaje,int pSize);
     int d_free(int mensaje,int pSize);
     void * getPointer();
     void sumPointer();
     virtual ~dataBase();
 private:
     void * _pointer, *_first;
+    lista * _list;
     int _leftMem;
     int d_status(int mensaje);
 };
