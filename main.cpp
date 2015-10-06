@@ -25,7 +25,10 @@ int contador(long dato) {
 }*/
 
 int main(int argc, char** argv) {
-    //Server * nuevo = new Server(5001);
+    Server * nuevo = new Server("holamunfdo",5001);
+    delete(nuevo);
+    //Server * nuevo1 = new Server("diuev",5002);
+    //Server * nuevo2 = new Server("nowboq",5003);
     /**char numeros=48;
     for(int i=0; i<5;i++){
         cout<<numeros<<endl;

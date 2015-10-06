@@ -18,7 +18,7 @@
 
 class Server :public Constantes{
 public:
-    Server(char* ServerName);
+    Server(char* ServerName, int port);
     virtual ~Server();
 private:
     int _sockfd, _newsockfd, _portno, _n, _codigos;

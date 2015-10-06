@@ -17,8 +17,9 @@ using namespace std;
  * por medio del cual nos queremos crear nuestro servidor
  * tcp/ip.
  */
-Server::Server(char* ServerName) {
-    _id=ServerName;
+Server::Server(char* ServerName,int port) {
+    _portno=port;
+    _id=(char*)ServerName;
     //aqui se inicializa el socket
     _sockfd = socket(AF_INET, SOCK_STREAM, cero);
     //resivision de si la conexion del socket 
@@ -30,7 +31,6 @@ Server::Server(char* ServerName) {
     bzero((char *) &_serv_addr, sizeof(_serv_addr));
     //establecemos los datos que se van a utilizar 
     //en el socket.
-    _portno = puerto;
     _serv_addr.sin_family = AF_INET;
     _serv_addr.sin_addr.s_addr = INADDR_ANY;
     _serv_addr.sin_port = htons(_portno);
@@ -47,7 +47,6 @@ Server::Server(char* ServerName) {
                 inet_ntoa(_cli_addr.sin_addr), ntohs(_cli_addr.sin_port));
     //nos envia al metodo que va a interactuar contra el cliente.
     _hilo=new MemHandler(_sockfd);
-    _hilo->interactuar();
     //cierra las conexiones para que no quede nada abierto.
     close(_newsockfd);
     close(_sockfd);

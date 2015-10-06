@@ -39,15 +39,17 @@ void MemHandler::interactuar() {
         int datos=0;
         //linea para leer mensajes.
         _n = read(_sockfd,&datos,sizeof(int));
-        if (_n < cero) 
-            error(error5);
-        _n= decodeMsg(datos);
         if(_debug)
-            printf("Here is the message: %s",_buffer);
-        _n=send(_sockfd, &_n, sizeof(int), cero);
-        //linea para enviar datos.
+            cout<<datos<<endl;
         if (_n < cero) 
             error(error6);
+        datos= decodeMsg(datos);
+        if(_debug)
+            printf("Here is the message: %s",_buffer);
+        _n=write(_sockfd, &datos, sizeof(int));
+        //linea para enviar datos.
+        if (_n < cero) 
+            error(error5);
     }
     close(_sockfd);
 }
@@ -92,6 +94,8 @@ void MemHandler::error(const char* msg) {
 int MemHandler::_calloc() {
     int n,pSize=0;
     n = read(_sockfd,&pSize,sizeof(int));
+    if(_debug)
+        cout<<pSize<<endl;
     if (n < cero) 
         error(error5);
     _codigos=_heap->d_calloc(pSize);
@@ -131,6 +135,7 @@ void MemHandler::_set() {
     n = read(_sockfd,_heap->getPointer(),size);
     if (n < cero) 
         error(error5);
+    printf((char*)_heap->getPointer());
     _heap->sumPointer();
 }
 
